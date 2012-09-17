@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SHERLOCK -->
+    <style name="Theme.DreamDrawer.ActionBar" parent="@style/Theme.Sherlock.Light">
+        <item name="android:actionBarStyle">@style/Theme.DreamDrawer.ActionBarStyle</item>
+        <item name="actionBarStyle">@style/Theme.DreamDrawer.ActionBarStyle</item>
+    </style>
+
+    <style name="Theme.DreamDrawer.ActionBarStyle" parent="@style/Widget.Sherlock.Light.ActionBar.Solid">
+    </style>
+
+    <style name="Theme.DreamDrawer.ActionBarStyle.Title" parent="@style/TextAppearance.Sherlock.Widget.ActionBar.Title">
+    </style>
+</resources>

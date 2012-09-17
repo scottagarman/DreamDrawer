@@ -1,11 +1,11 @@
 package com.scottagarman.android.dreamdrawer;
 
-import android.app.Activity;
 import android.os.Bundle;
+import com.actionbarsherlock.app.SherlockActivity;
 import net.simonvt.widget.MenuDrawer;
 import net.simonvt.widget.MenuDrawerManager;
 
-public class LauncherActivity extends Activity {
+public class LauncherActivity extends SherlockActivity {
 
     private MenuDrawerManager mMenuDrawer;
 
@@ -19,5 +19,29 @@ public class LauncherActivity extends Activity {
 
         // Set menu view
         mMenuDrawer.setMenuView(R.layout.menu_drawer);
+
+        // Set home enabled
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mMenuDrawer.toggleMenu();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        final int drawerState = mMenuDrawer.getDrawerState();
+        if (drawerState == MenuDrawer.STATE_OPEN || drawerState == MenuDrawer.STATE_OPENING) {
+            mMenuDrawer.closeMenu();
+            return;
+        }
+
+        super.onBackPressed();
     }
 }
