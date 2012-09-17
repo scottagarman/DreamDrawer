@@ -1,0 +1,6 @@
+[submodule "menu-drawer"]
+	path = menu-drawer
+	url = git@github.com:scottagarman/android-menudrawer.git
+[submodule "abs"]
+	path = abs
+	url = git@github.com:scottagarman/ActionBarSherlock.git
