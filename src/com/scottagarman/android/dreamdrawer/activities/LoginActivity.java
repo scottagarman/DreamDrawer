@@ -5,14 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
-import com.actionbarsherlock.app.SherlockActivity;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.scottagarman.android.dreamdrawer.R;
 
-public class LoginActivity extends SherlockActivity {
+public class LoginActivity extends DDActivity {
 
     private EditText mEmailTextView;
     private EditText mPasswordTextView;
@@ -20,16 +20,22 @@ public class LoginActivity extends SherlockActivity {
     private Button mLoginButton;
     private Button mSignupButton;
 
+    private RelativeLayout mHeroView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setDDContentView(R.layout.activity_login);
 
         // get views
         mEmailTextView = (EditText) findViewById(R.id.login_email);
         mPasswordTextView = (EditText) findViewById(R.id.login_password);
         mLoginButton = (Button) findViewById(R.id.login_btn_login);
         mSignupButton = (Button) findViewById(R.id.login_btn_signup);
+        mHeroView = (RelativeLayout) findViewById(R.id.login_hero);
+
+        mEmailTextView.setOnClickListener(mEditTextOnClickListener);
+        mPasswordTextView.setOnClickListener(mEditTextOnClickListener);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +43,6 @@ public class LoginActivity extends SherlockActivity {
                 makeLoginRequest();
             }
         });
-
         mSignupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +50,15 @@ public class LoginActivity extends SherlockActivity {
                 finish();
             }
         });
+
     }
+
+    private View.OnClickListener mEditTextOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            mHeroView.setVisibility(View.GONE);
+        }
+    };
 
     private void makeLoginRequest() {
         String email = mEmailTextView.getText().toString();
@@ -53,10 +66,11 @@ public class LoginActivity extends SherlockActivity {
 
         if(!verifyFields(email, password)) return;
 
-        //TODO: show loading dialog
+        setLoading(true);
 
         ParseUser.logInInBackground(email, password, new LogInCallback() {
             public void done(ParseUser user, ParseException e) {
+                setLoading(false);
                 if (user != null) {
                     // Hooray! The user is logged in.
                     Toast.makeText(LoginActivity.this, "Logged in!", Toast.LENGTH_SHORT).show();
@@ -66,7 +80,6 @@ public class LoginActivity extends SherlockActivity {
                     Toast.makeText(LoginActivity.this, "Failed to log in: " + e.toString(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
-                //TODO: hide loading dialog
             }
         });
 

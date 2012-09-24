@@ -14,7 +14,6 @@ import com.scottagarman.android.dreamdrawer.R;
 public class SignUpActivity extends SherlockActivity {
     private EditText mEmailTextView;
     private EditText mPasswordTextView;
-    private EditText mUserNameTextView;
 
     private Button mLoginButton;
 
@@ -27,7 +26,6 @@ public class SignUpActivity extends SherlockActivity {
         // get views
         mEmailTextView = (EditText) findViewById(R.id.signup_email);
         mPasswordTextView = (EditText) findViewById(R.id.signup_password);
-        mUserNameTextView = (EditText) findViewById(R.id.signup_username);
         mLoginButton = (Button) findViewById(R.id.signup_btn_signup);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +38,7 @@ public class SignUpActivity extends SherlockActivity {
 
     private void makeSignupRequest() {
         String email = mEmailTextView.getText().toString();
-        String username = mUserNameTextView.getText().toString();
+        String username = mEmailTextView.getText().toString();
         String password = mPasswordTextView.getText().toString();
 
         if(!verifyFields(email, username, password)) return;
@@ -58,6 +56,7 @@ public class SignUpActivity extends SherlockActivity {
               if (e == null) {
                   // Hooray! The user is logged in.
                   Toast.makeText(SignUpActivity.this, "Signed up!", Toast.LENGTH_SHORT).show();
+                  finish();
               } else {
                   // Login failed. Look at the ParseException to see what happened.
                   Toast.makeText(SignUpActivity.this, "Failed to sign up." + e.toString(), Toast.LENGTH_SHORT).show();
@@ -72,10 +71,6 @@ public class SignUpActivity extends SherlockActivity {
         //TODO: add check for valid email
         if(email == null || "".equals(email)) {
             msg.append("-Missing valid email address.\n");
-        }
-
-        if(username == null || "".equals(username)) {
-            msg.append("-Please enter a valid username\n");
         }
 
         if(password == null || "".equals(password)) {

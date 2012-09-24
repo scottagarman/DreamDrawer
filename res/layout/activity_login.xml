@@ -5,30 +5,55 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <EditText
-        android:id="@+id/login_email"
+    <RelativeLayout
+        android:id="@+id/login_hero"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        />
-    <EditText
-        android:id="@+id/login_password"
+        android:layout_height="194dip"
+        android:background="#CCCCCC"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#6441A5"
+            android:textSize="42dip"
+            android:textStyle="bold"
+            android:text="DreamDrawer"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        />
-    <Button
-        android:id="@+id/login_btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login!"
-        />
-    <Button
-        android:id="@+id/login_btn_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign up"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="14dip"
+        >
+        <EditText
+            android:id="@+id/login_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/textfield_activated_holo_light"
+            />
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:background="@drawable/textfield_activated_holo_light"
+            />
+        <Button
+            android:id="@+id/login_btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login!"
+            />
+        <Button
+            android:id="@+id/login_btn_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign up"
+            />
+    </LinearLayout>
 </LinearLayout>
