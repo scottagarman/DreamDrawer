@@ -1,20 +1,13 @@
 package com.scottagarman.android.dreamdrawer.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.parse.ParseUser;
 import com.scottagarman.android.dreamdrawer.R;
 import net.simonvt.widget.MenuDrawer;
 import net.simonvt.widget.MenuDrawerManager;
 
-public class DDActivity extends SherlockActivity {
-    private MenuItem mLoadingMenuItem;
+public class MenuDrawerActivity extends DreamSuperActivity {
     protected MenuDrawerManager mMenuDrawer;
-    protected ParseUser mParseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,46 +22,12 @@ public class DDActivity extends SherlockActivity {
         mMenuDrawer.getMenuView().findViewById(R.id.menu_drawer_logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ParseUser.logOut();
-                startActivity(new Intent(DDActivity.this, LoginActivity.class));
                 mMenuDrawer.closeMenu();
             }
         });
 
         // Set home enabled
         getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mParseUser = ParseUser.getCurrentUser();
-        if (mParseUser != null || this instanceof LoginActivity) {
-        } else {
-          startActivity(new Intent(DDActivity.this, LoginActivity.class));
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        mLoadingMenuItem = menu.add("Loading...")
-            //.setIcon(android.R.drawable.ic_menu_)
-            .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    return true;
-                }
-            })
-            .setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS)
-            .setVisible(false);
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    protected void setLoading(boolean isLoading) {
-        if(isLoading) {
-            mLoadingMenuItem.setActionView(R.layout.layout_loading_indicator);
-            mLoadingMenuItem.setVisible(true);
-        }else {
-            mLoadingMenuItem.setActionView(null);
-            mLoadingMenuItem.setVisible(false);
-        }
     }
 
     @Override

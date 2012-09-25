@@ -7,12 +7,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+import com.actionbarsherlock.view.Menu;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.scottagarman.android.dreamdrawer.R;
 
-public class LoginActivity extends DDActivity {
+public class LoginActivity extends DreamSuperActivity {
 
     private EditText mEmailTextView;
     private EditText mPasswordTextView;
@@ -25,7 +26,7 @@ public class LoginActivity extends DDActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setDDContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login);
 
         // get views
         mEmailTextView = (EditText) findViewById(R.id.login_email);
@@ -51,6 +52,12 @@ public class LoginActivity extends DDActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        return super.onCreateOptionsMenu(menu);
     }
 
     private View.OnClickListener mEditTextOnClickListener = new View.OnClickListener() {

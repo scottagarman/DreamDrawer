@@ -6,7 +6,7 @@
         <item name="actionBarStyle">@style/Theme.DreamDrawer.ActionBarStyle</item>
     </style>
 
-    <style name="Theme.DreamDrawer.ActionBarStyle" parent="@style/Widget.Sherlock.Light.ActionBar.Solid">
+    <style name="Theme.DreamDrawer.ActionBarStyle" parent="@style/Widget.Sherlock.Light.ActionBar.Solid.Inverse">
         <item name="background">#6441A5</item>
         <item name="android:background">#6441A5</item>
         <item name="android:titleTextStyle">@style/Theme.DreamDrawer.ActionBarStyle.Title</item>
